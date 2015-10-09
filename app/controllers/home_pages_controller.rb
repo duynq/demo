@@ -5,7 +5,8 @@ class HomePagesController < ApplicationController
       @feed_items = current_user.feed.paginate(page: params[:page])
     end
   end
-
+  #dfasdfasdfasdf
+  #sadfad
   def help
   end
 end
