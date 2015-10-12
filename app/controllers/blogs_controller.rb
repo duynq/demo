@@ -36,7 +36,7 @@ class BlogsController < ApplicationController
 	    end
 
 	    def blog_params
-	      params.require(:blog).permit(:content, :picture)
+	      params.require(:blog).permit(:title, :content, :picture)
 	    end
 	    def correct_user
 	      @blog = current_user.blogs.find_by(id: params[:id])
