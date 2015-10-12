@@ -1,0 +1,32 @@
+<%= provide(:title, @blog.title) %>
+
+<div>
+
+	<div>
+	  <h1><%= @blog.title %><h1>
+	</div>
+
+	<div>
+	  <p><%= @blog.content %></p>
+	</div>
+	<div>
+	  Composed by:
+	  <strong><%= link_to @blog.user.name, @blog.user %></strong>
+	</div>
+
+	<% if logged_in?  %>
+		<section>
+		<%= render 'shared/comment_form', blog: @blog %>
+		</section>
+	<% end %>
+
+	<section>
+		<% if @blog.comments.any? %>
+  			<h3>Comments (<%= @blog.comments.count %>)</h3>
+  			<ol class='blogs'>
+  				<%= render @comments %>
+  			</ol>
+  			<%= will_paginate @comments %>
+			<% end %>
+	</section>
+</div>

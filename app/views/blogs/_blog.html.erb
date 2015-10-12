@@ -1,7 +1,9 @@
 <li id="blog-<%= blog.id %>">
   <%= link_to gravatar_for(blog.user, size: 50), blog.user %>
   <span class="user"><%= link_to blog.user.name, blog.user %></span>
+
   <span class="content">
+    <h2><%=link_to blog.title, blog %></h2>
   	<%= blog.content %>
   	<%= image_tag blog.picture.url if blog.picture? %>
   </span>
@@ -11,5 +13,8 @@
       <%= link_to "delete", blog, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
+  </span>
+  <span class="" >
+    
   </span>
 </li>

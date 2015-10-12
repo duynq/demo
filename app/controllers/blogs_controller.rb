@@ -1,6 +1,12 @@
 class BlogsController < ApplicationController
+
+	before_action :set_blog, only: [:show, :update, :destroy]
 	before_action :logged_in_user, only: [:create, :destroy]
 	before_action :correct_user,   only: :destroy
+
+	def index
+	    @blog = Blog.all.paginate(page: params[:page], per_page: 10)
+	end
 
 	def create
 		@blog = current_user.blogs.build(blog_params)
@@ -12,6 +18,10 @@ class BlogsController < ApplicationController
 	      	render 'home_pages/home'
 	    end
 	end
+	def show
+	    @comment = current_user.comments.build if logged_in?
+	    @comments = @blog.comments.paginate(page: params[:page], per_page: 10)
+	end
 
 	def destroy
 		@blog.destroy
@@ -20,6 +30,10 @@ class BlogsController < ApplicationController
 	end
 
 	private
+
+		def set_blog
+	      @blog = Blog.find(params[:id])
+	    end
 
 	    def blog_params
 	      params.require(:blog).permit(:content, :picture)

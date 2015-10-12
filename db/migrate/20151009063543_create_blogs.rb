@@ -1,7 +1,6 @@
 class CreateBlogs < ActiveRecord::Migration
   def change
     create_table :blogs do |t|
-      t.text :title
       t.text :content
       t.references :user, index: true, foreign_key: true
 

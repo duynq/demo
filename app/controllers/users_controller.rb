@@ -78,6 +78,9 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+    def current_user?(user)
+      user == current_user
+    end
     # Confirms an admin user.
     def admin_user
       redirect_to(root_url) unless current_user.admin?

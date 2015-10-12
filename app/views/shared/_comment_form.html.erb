@@ -1,0 +1,9 @@
+<%= form_for(Comment.new, html: {multipart: true}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div>
+    <%= f.text_area :content, placeholder: "Write a comment...", class: "form-control" %>
+    <br>
+  </div>
+  	<%= f.hidden_field :blog_id, value: blog.id %>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
